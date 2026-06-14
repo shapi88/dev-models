@@ -1,145 +1,75 @@
 # dev-models
 
-**Curated, versioned project models, reference structures, and command references for developers.**
+**Developer Handbook & Companion**
 
-A practical daily-driver helper repo organized around real programming languages + essential ops tooling.
+A practical, versioned knowledge base of **architectural models**, best practices, instructions, and API/framework documentation.
 
-## What is a "model" here?
+Goal: Help junior (and not-so-junior) developers get a fast, reliable upside on the learning curve when working with high-demand platforms.
 
-A **model** is a small, high-quality, copyable reference:
+## What "models" means here
 
-- Recommended project layout / folder structure for a specific kind of work
-- Starter boilerplate with the "right" modern defaults and idiomatic patterns
-- Reference implementation of a common pattern (with explanations)
-- For Unix & Kubernetes: well-organized command sets, script templates, and manifest "models"
+In this repository, **models** = reference models and guides:
 
-Everything is **explicitly versioned** so you can see evolution and pin to a known-good state.
+- Architectural models (Monolith, Microservices, and their evolution over time)
+- Implementation patterns and best practices for specific platforms
+- Versioned framework handbooks (especially Spring Boot 4 and its new APIs)
 
-## Languages & Topics
+Everything is structured so you can quickly find "the current recommended way" and see how it changed from previous versions.
 
-- **python**
-- **javascript**
-- **java**
-- **kotlin**
-- **c**
-- **unix** (commands + scripting models)
-- **kubernetes** (manifest models + commands)
+## Focus Areas
 
-## Quick Start
+- **Architectures**: Monolith vs Microservices (trade-offs, structure, when to use, migration)
+- **Spring Boot 4** (and other major versions): new APIs, migration guides, recommended patterns
+- **Best practices**: Coding, testing, security, API design, configuration, observability, etc.
+- **API design & documentation**: REST guidelines, versioning strategies, error handling, OpenAPI usage
+- Per-language companions for high-demand stacks (Java, JavaScript/TypeScript, Python, Kotlin, ...)
+
+## Quick Navigation
 
 ```bash
-# Browse the structure
-cd dev-models
+# Architectural models
+architectures/monolith/v1/
+architectures/microservices/v1/
 
-# Find a Python web project model
-ls python/models/web-api/
+# Spring Boot 4 (current focus)
+spring-boot/4/
+spring-boot/4/api/
+spring-boot/4/best-practices/
 
-# Copy the latest version somewhere
-cp -r python/models/web-api/v1.0.0/* ~/my-new-project/
-cd ~/my-new-project
-# ... rename package, init git, etc. (see the model's README)
+# Cross-cutting
+api-design/rest/versioning.md
+onboarding/junior-developer-guide.md
 ```
 
-See the full naming rules and philosophy:
+See the detailed structure and versioning rules in the plan:
 
-- [docs/naming-and-versioning.md](docs/naming-and-versioning.md)
-- [plan.md](plan.md) (implementation plan / history of decisions)
+- [plan.md](plan.md)
+- (Future) docs/naming-and-versioning.md
 
-## Current Models & References
+## Current Content (Early Bootstrap)
 
-> This table is maintained manually for now. A generator script is planned.
+- **Architectures**
+  - Monolith model v1
+  - Microservices model v1
+- **Spring Boot 4**
+  - Getting started for juniors
+  - REST controller best practices
+  - API versioning strategies
+  - Basic security best practices
+  - Error handling (stub)
+- **Onboarding**
+  - Junior developer guide with recommended reading order
+- **Naming & Versioning rules** documented in `docs/naming-and-versioning.md`
 
-### Python
-| Model         | Latest | Path                                      | Notes                                      |
-|---------------|--------|-------------------------------------------|--------------------------------------------|
-| web-api       | v1.0.0 | `python/models/web-api/v1.0.0/`           | Modern src/ + pyproject.toml + Dockerfile  |
-| cli-tool      | —      | `python/models/cli-tool/`                 | (add your first version)                   |
-
-### JavaScript
-| Model         | Latest | Path                                           | Notes                        |
-|---------------|--------|------------------------------------------------|------------------------------|
-| cli-tool      | v1.0.0 | `javascript/models/cli-tool/v1.0.0/`           | ESM + minimal bin skeleton   |
-
-### Java
-| Model         | Latest | Path                           | Notes |
-|---------------|--------|--------------------------------|-------|
-| (TBD)         | —      | `java/models/`                 | Language README present      |
-
-### Kotlin
-| Model         | Latest | Path                           | Notes |
-|---------------|--------|--------------------------------|-------|
-| (TBD)         | —      | `kotlin/models/`               | Language README present      |
-
-### C
-| Model         | Latest | Path                                      | Notes                     |
-|---------------|--------|-------------------------------------------|---------------------------|
-| system-tool   | v1.0.0 | `c/models/system-tool/v1.0.0/`            | Makefile + src/include skeleton |
-
-### Unix
-| Area          | Content                          | Path                           | Notes |
-|---------------|----------------------------------|--------------------------------|-------|
-| commands      | file-ops, process-mgmt           | `unix/commands/`               | Categorized patterns + examples |
-| models        | —                                | `unix/models/`                 | Add script project models |
-
-### Kubernetes
-| Area          | Latest | Path                                                | Notes |
-|---------------|--------|-----------------------------------------------------|-------|
-| models        | v1.0.0 | `kubernetes/models/stateless-web/v1.0.0/`           | Deployment + Service (1.28+) |
-| commands      | —      | `kubernetes/commands/`                              | Add useful kubectl references |
-
-## Philosophy & Conventions
-
-- **Versioned models** (`v1.2.0/`) are the atomic unit you copy or reference.
-- Old versions stay forever.
-- Each model version ships its own excellent `README.md` explaining *why* the structure exists and how to turn it into a real project.
-- We favor **language-native** or very common setups over tying models too tightly to specific frameworks (framework notes go in the README).
-
-See the complete rules: [docs/naming-and-versioning.md](docs/naming-and-versioning.md)
+This is intended to be a living handbook.
 
 ## Contributing
 
-Models are meant to be **living references** that improve over time.
+See [plan.md](plan.md) for the current rollout phases and content guidelines.
 
-1. Open an issue or PR describing the model / improvement.
-2. Follow the naming + versioning policy.
-3. Include a high-quality README inside the version directory.
-4. Update relevant index tables.
-
-More details coming in `CONTRIBUTING.md` and `docs/adding-a-new-model.md`.
-
-## Project Layout (on disk)
-
-```
-dev-models/
-├── python/
-│   └── models/
-│       └── web-api/
-│           └── v1.0.0/     ← copy this (or any version)
-├── javascript/ ...
-├── java/ ...
-├── kotlin/ ...
-├── c/ ...
-├── unix/
-│   ├── models/
-│   └── commands/
-├── kubernetes/
-│   ├── models/
-│   └── commands/
-├── shared/
-├── scripts/
-├── docs/
-│   └── naming-and-versioning.md
-├── plan.md
-└── README.md
-```
-
-## Status
-
-Early bootstrap. The structure and naming policy are in place. First real models (starting with Python) are being added.
-
-This repo exists to save you (and future you) time when starting or refactoring projects.
+Core rule: Every major section that can evolve (architectures, framework versions, important best practices) should be versioned in the directory structure.
 
 ---
 
-**Repo path:** `/Users/andreleitao/MyProjects/dev-models`  
-**Plan document:** [plan.md](plan.md) (self-contained in the repo)
+**Repo:** `/Users/andreleitao/MyProjects/dev-models`  
+**Full plan & decisions:** [plan.md](plan.md)
