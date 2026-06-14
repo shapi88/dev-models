@@ -1,0 +1,13 @@
+{
+  "name": "my-cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "my-cli": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
