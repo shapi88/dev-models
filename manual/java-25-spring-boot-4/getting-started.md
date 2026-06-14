@@ -1,4 +1,4 @@
-# Spring Boot 4 — Getting Started
+# Java 25 + Spring Boot 4 — Getting Started
 
 **For junior developers**
 
@@ -7,7 +7,11 @@
 Use **Spring Initializr** (https://start.spring.io) with these settings:
 
 - **Spring Boot**: 4.x (latest patch)
-- **Java**: 21 (or 22 if allowed by your platform)
+- **Java**: 25 (our current baseline)
+- **Language**: Java
+- **Packaging**: Jar
+
+**Important**: Always select Java 25 when generating new projects for our platforms. Spring Boot 4 has excellent support for Java 25 features.
 - **Language**: Java
 - **Packaging**: Jar
 - **Dependencies** (start minimal):

@@ -1,10 +1,10 @@
 # dev-models
 
-**Developer Handbook & Companion**
+**Developer Manual** (Java 25 + Spring Boot 4 Focus)
 
-A practical, versioned knowledge base of **architectural models**, best practices, instructions, and API/framework documentation.
+A practical, versioned **Developer Manual** focused on **Java 25 + Spring Boot 4**, architectural models, best practices, and API design.
 
-Goal: Help junior (and not-so-junior) developers get a fast, reliable upside on the learning curve when working with high-demand platforms.
+Goal: Help junior developers get a fast, reliable upside on the learning curve on high-demand enterprise platforms (especially those using modern Java + Spring Boot).
 
 ## What "models" means here
 

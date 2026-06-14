@@ -10,7 +10,8 @@ This document defines how we organize content in the developer handbook (`dev-mo
 ## Top-Level Organization
 
 - `architectures/` — Reference models for system design (monolith, microservices, etc.)
-- `spring-boot/`, `java/`, `javascript/`, etc. — Platform and language specific handbooks
+- `manual/java-25-spring-boot-4/` — Primary platform manual (Java 25 + Spring Boot 4)
+- Other language sections live under `manual/other-platforms/` or `manual/java-...` when relevant.
 - `api-design/` — Cross-cutting API design rules
 - `onboarding/` — High-level guides for new developers
 - `best-practices/` (when cross-cutting) — General rules that don't belong to one framework

@@ -1,4 +1,4 @@
-# Migrating from Spring Boot 3 to 4 (Stub)
+# Migrating from Spring Boot 3 to Java 25 + Spring Boot 4 (Stub)
 
 This page will contain the practical migration guide.
 

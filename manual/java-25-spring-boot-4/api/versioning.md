@@ -1,4 +1,4 @@
-# API Versioning Strategies — Spring Boot 4
+# API Versioning Strategies — Java 25 + Spring Boot 4
 
 ## Our Current Recommended Approach (v1)
 

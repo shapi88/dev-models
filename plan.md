@@ -1,8 +1,14 @@
-# Plan: dev-models — Developer Handbook & Companion
+# Plan: dev-models — Developer Manual (Java 25 + Spring Boot 4 Focus)
 
 **Target location:** `/Users/andreleitao/MyProjects/dev-models`
 
-**Current state (as of this revision):** The directory contains only a legacy README.md (from a previous interpretation) and a `.git` repo. We will treat this as a fresh start for the correct vision.
+**Current state (as of this revision):** Handbook structure with architectures and Spring Boot 4 content exists. This revision checks the plan against the new requirements and reorganizes for a proper **Developer's Manual** centered on **Java 25 + Spring Boot 4**.
+
+The previous plan was solid for a general handbook. This update:
+- Makes **Java 25 + Spring Boot 4** the flagship platform (high-demand enterprise stack).
+- Rebrands the main deliverable as a "Developer Manual".
+- Reorganizes the folder structure for better navigability as a manual (clear chapters, TOC-friendly).
+- Updates all references, versioning, and content guidelines for Java 25 baseline.
 
 ---
 
@@ -22,9 +28,11 @@ The user wants a **Developer Handbook** (primarily a collection of Markdown file
   - Microservice architectures (service boundaries, communication, deployment, observability)
 - **Best practices** (coding standards, testing, security, performance, deployment, documentation, etc.)
 - **Versioned framework / API documentation**, with strong emphasis on modern versions:
-  - Spring Boot 4 (new APIs, changes from 3.x, recommended patterns, migration notes)
+  - **Java 25 + Spring Boot 4** (new APIs in both Java and Spring Boot, recommended patterns, migration notes, Java 25 features like improved Virtual Threads, Records, Pattern Matching)
   - Similar treatment for other high-demand stacks
 - **API documentation & design** (REST/HTTP API guidelines, versioning strategies, OpenAPI examples, error handling, pagination, etc.)
+
+The manual is specifically adapted for developers working on platforms using **Java 25 and Spring Boot 4** as the primary high-demand technology stack.
 
 ### "Models" Interpretation
 In this context, **"programming languages models"** refers to **reference models** and **handbook sections** per language/platform:
@@ -37,7 +45,7 @@ The repo is a **living knowledge base**, not a collection of runnable boilerplat
 **Target users:** Junior developers (and anyone ramping up on a new high-demand stack).
 
 **High-demand platforms focus** (based on user's previous mention of languages + Spring Boot 4):
-- Java (Spring Boot 4 as flagship)
+- **Java 25 + Spring Boot 4** (primary flagship — this is the main focus of the manual)
 - JavaScript/TypeScript
 - Python
 - Kotlin (often paired with Spring or Android)
@@ -78,71 +86,65 @@ This is the most important part of the user's request.
 - Prefer **framework major versions** as top-level version segments when they introduce significant API or paradigm shifts (e.g. `spring-boot/4/`).
 - Use **vX.Y** or calendar-ish versions for architecture models and best practices when they evolve independently.
 
-### Recommended Directory Structure (with versioning)
+### Recommended Directory Structure (with versioning) — Reorganized as a Developer Manual
+
+To make this feel like a real **Developer's Manual**, we introduce a top-level `manual/` folder. This acts as the main book-like container with clear chapters.
 
 ```bash
 dev-models/
-├── README.md
+├── README.md                          # High-level repo overview
 ├── plan.md
-├── architectures/
-│   ├── monolith/
-│   │   └── v1/
-│   │       ├── overview.md
-│   │       ├── structure.md
-│   │       ├── when-to-use.md
-│   │       └── migration-to-microservices.md
-│   └── microservices/
-│       ├── v1/
-│       └── v2/                    # updated model (new patterns, better boundaries, etc.)
-│           ├── service-design.md
-│           ├── communication.md
-│           └── observability.md
-├── spring-boot/
-│   ├── 3/                         # reference / migration from
-│   └── 4/                         # focus area (new API versions)
-│       ├── README.md
-│       ├── getting-started.md
-│       ├── migration-from-3.md
-│       ├── api/
-│       │   ├── rest-controller-best-practices.md
-│       │   ├── versioning.md          # API versioning strategies
-│       │   ├── error-handling.md
-│       │   └── openapi.md
-│       ├── best-practices/
-│       │   ├── security.md
-│       │   ├── testing.md
-│       │   ├── configuration.md
-│       │   └── performance.md
-│       └── examples/                  # small, focused code snippets (not full projects)
-│           ├── rest-api/
-│           └── event-driven/
-├── java/
-│   ├── best-practices/
-│   │   └── general.md
-│   └── spring-boot-4/                 # language-specific companion section
-├── javascript/
-│   └── best-practices/
-│       └── api-design.md
-├── python/
-│   └── ...
-├── api-design/                        # cross-cutting
-│   ├── rest/
-│   │   └── versioning-strategies.md
-│   └── general/
-│       └── best-practices.md
-├── onboarding/
-│   ├── junior-developer-guide.md
-│   └── high-demand-platforms.md
-└── docs/                              # meta
-    └── contributing.md
+├── manual/                            # The Developer Manual (main content)
+│   ├── README.md                      # Manual title page + Table of Contents
+│   ├── getting-started/
+│   │   └── index.md
+│   ├── architectures/
+│   │   ├── monolith/
+│   │   │   └── v1/
+│   │   │       ├── overview.md
+│   │   │       └── ...
+│   │   └── microservices/
+│   │       └── v1/
+│   │           └── overview.md
+│   ├── java-25-spring-boot-4/         # Flagship section (Java 25 + Spring Boot 4)
+│   │   ├── README.md                  # Section overview + what's new in Java 25 + SB4
+│   │   ├── getting-started.md
+│   │   ├── migration-from-spring-boot-3.md
+│   │   ├── api-development/
+│   │   │   ├── rest-best-practices.md
+│   │   │   ├── versioning.md
+│   │   │   └── error-handling.md
+│   │   ├── best-practices/
+│   │   │   ├── security.md
+│   │   │   ├── testing.md
+│   │   │   └── configuration.md
+│   │   ├── java-25-features/          # Specific Java 25 integration (Virtual Threads, Records, etc.)
+│   │   └── examples/                  # Focused snippets
+│   ├── api-design/                    # Cross-cutting
+│   │   └── rest/
+│   │       └── versioning-strategies.md
+│   ├── other-platforms/               # For balance with other languages
+│   │   ├── javascript-typescript/
+│   │   └── python/
+│   └── onboarding/
+│       └── junior-developer-guide.md
+├── docs/                              # Meta documentation
+│   └── naming-and-versioning.md
+└── ...
 ```
+
+**Major reorganization benefits**:
+- Everything a developer needs day-to-day lives under `manual/`.
+- `java-25-spring-boot-4/` makes the Java 25 + SB4 focus explicit.
+- Architectures remain cross-cutting but versioned.
+- Easy to add "chapters" for other languages later.
 
 ### Versioning Rules (to document in the handbook itself)
 
-- **Framework versions** (Spring Boot 4, etc.): Use the major version as a directory (`4/`, `3/`). Inside, you can have minor sections if needed.
+- **Java + Framework versions** (Java 25 + Spring Boot 4): Use clear names like `java-25-spring-boot-4/`. For future major versions create `java-26-spring-boot-5/` etc. This makes the exact platform version the developer is targeting immediately obvious.
 - **Architectural models**: Use `v1/`, `v2/`. Bump when the recommended model fundamentally changes.
-- **Best practices & instructions**: Version only when they evolve significantly (`best-practices/security/v2/` or just keep latest with a "Last updated" + changelog note). Prefer lightweight versioning here.
-- **API documentation**: Tie to the producing framework version (Spring Boot 4 REST API patterns live under `spring-boot/4/api/`).
+- **Best practices & instructions**: Version only when they evolve significantly. Prefer lightweight "Last updated" + changelog notes inside files unless a major shift occurs.
+- **API documentation**: Tied to the `java-25-spring-boot-4/` section. New major API changes in future Java/Spring versions get their own top-level versioned section.
 
 Every versioned folder should contain a `README.md` or `overview.md` that states:
 - What version of the platform/technology this covers
@@ -165,7 +167,7 @@ This structure gives juniors a clear mental model:
 
 ### What to include in sections
 - **Architectures**: Trade-offs, when to choose monolith vs microservices, example high-level diagrams, common pitfalls for juniors.
-- **Spring Boot 4**: New features in 4.x, changed defaults, recommended project setup, controller/service patterns, configuration with the new approach, testing improvements, etc.
+- **Java 25 + Spring Boot 4**: New features in Java 25 (Virtual Threads, Records, Pattern Matching, etc.) + Spring Boot 4 APIs, recommended project setup using Java 25, controller/service patterns, configuration, testing with modern JUnit 5 / Testcontainers, and how Java 25 features integrate with Spring (e.g. virtual threads for web servers).
 - **Best practices**: Concrete, enforceable rules ("We use records for DTOs", "All public APIs must have OpenAPI docs", "Use constructor injection", etc.).
 - **API docs**: Consistent patterns for request/response, pagination, filtering, error codes, versioning (URL vs header), deprecation policy.
 
@@ -176,18 +178,13 @@ Keep them minimal and focused. Put them under `examples/` inside the relevant ve
 
 ## Phased Rollout Plan
 
-### Phase 1 — Foundation (MVP)
-1. Update root `README.md` to clearly describe the handbook purpose.
-2. Create the top-level folder structure as shown above.
-3. Write the core architectural models:
-   - `architectures/monolith/v1/`
-   - `architectures/microservices/v1/` (or v2 if you already have strong opinions)
-4. Create `spring-boot/4/` with:
-   - Getting started / project setup
-   - Migration notes from Spring Boot 3
-   - First API section (REST best practices + versioning)
-5. Add a strong `onboarding/junior-developer-guide.md`
-6. Write `docs/contributing.md` and update this `plan.md` if needed.
+### Phase 1 — Foundation (MVP) — Current state + Reorganization
+1. Update root `README.md` and create `manual/README.md` as the main Developer Manual entry point with Table of Contents.
+2. Reorganize existing content into the new `manual/` structure (see recommended directory above).
+3. Adapt all Spring Boot 4 content to **Java 25 + Spring Boot 4** (update getting-started, add Java 25 features section).
+4. Keep core architectural models under `manual/architectures/`.
+5. Ensure strong `manual/onboarding/junior-developer-guide.md`.
+6. Update `docs/naming-and-versioning.md` and this `plan.md`.
 
 ### Phase 2 — Depth
 - Expand best practices under each major section (security, testing, observability, deployment).

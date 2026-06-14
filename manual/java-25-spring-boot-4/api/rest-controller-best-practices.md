@@ -1,4 +1,4 @@
-# REST Controller Best Practices — Spring Boot 4
+# REST Controller Best Practices — Java 25 + Spring Boot 4
 
 ## Controller Responsibilities (Keep Them Thin)
 
