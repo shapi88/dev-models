@@ -19,6 +19,11 @@ This is the **main chapter** of the Developer Manual. It documents how we build 
 
 Spring Boot 4 works excellently on Java 25 (official support starts from Java 21, with Java 25 providing the best experience).
 
+See the new sections on:
+- Monolith → Microservices migration strategy
+- Memory and startup time optimization
+- Persistence APIs for PostgreSQL, MongoDB, and SQL/JDBC
+
 ## Structure of This Handbook
 
 - [Getting Started](getting-started.md)

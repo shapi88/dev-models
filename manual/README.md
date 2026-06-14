@@ -16,11 +16,19 @@ It is designed especially for junior developers to quickly get up to speed with 
    - [Overview](./java-25-spring-boot-4/README.md)
    - [Getting Started with Java 25 + Spring Boot 4](./java-25-spring-boot-4/getting-started.md)
    - [Migration from Spring Boot 3](./java-25-spring-boot-4/migration-from-spring-boot-3.md)
+   - **Migration Strategies**
+     - [Multi-Module Monolith to Microservices Strategy Guide](./java-25-spring-boot-4/migration/monolith-to-microservices.md)
    - [API Development](./java-25-spring-boot-4/api/)
      - [REST Controller Best Practices](./java-25-spring-boot-4/api/rest-controller-best-practices.md)
      - [API Versioning Strategies](./java-25-spring-boot-4/api/versioning.md)
      - [Error Handling](./java-25-spring-boot-4/api/error-handling.md)
    - [Best Practices](./java-25-spring-boot-4/best-practices/)
+     - Memory Usage Reduction Strategies *(new)*
+     - Application Spin-up Time Reduction Strategies *(new)*
+   - [Persistence & Data Access](./java-25-spring-boot-4/persistence/)
+     - PostgreSQL (JPA)
+     - MongoDB
+     - SQL / JDBC
    - [Java 25 Specific Features](./java-25-spring-boot-4/java-25-features/) *(coming soon)*
 4. [API Design (Cross-cutting)](./api-design/)
 5. [Onboarding for Junior Developers](./onboarding/junior-developer-guide.md)

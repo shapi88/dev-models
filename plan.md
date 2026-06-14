@@ -186,11 +186,19 @@ Keep them minimal and focused. Put them under `examples/` inside the relevant ve
 5. Ensure strong `manual/onboarding/junior-developer-guide.md`.
 6. Update `docs/naming-and-versioning.md` and this `plan.md`.
 
-### Phase 2 — Depth
+### Phase 2 — Depth (including latest additions)
 - Expand best practices under each major section (security, testing, observability, deployment).
+- **New:** Detailed strategy guide for moving from multi-module monolith to microservices (Spring Boot 4 / Java 25 specific).
+- **New:** Dedicated best practices for:
+  - Reducing memory usage (Java 25 Virtual Threads, heap tuning, AOT, leak prevention).
+  - Reducing application startup/spin-up time (lazy initialization, GraalVM native compilation, classpath optimizations, Java 25 improvements).
+- **New:** Persistence / Data API documentation chapters for:
+  - PostgreSQL (Spring Data JPA)
+  - MongoDB (Spring Data MongoDB)
+  - General SQL / JDBC patterns
 - Add language-specific companions for JavaScript, Python, Kotlin, etc., focused on their high-demand usage patterns.
 - Cross-cutting `api-design/` section with more detail.
-- Add more Spring Boot 4 API patterns (validation, security with Spring Security 6, reactive vs servlet, etc.).
+- Add more Spring Boot 4 / Java 25 API patterns (validation, security with Spring Security 6, reactive vs servlet, etc.).
 
 ### Phase 3 — Polish & Automation
 - Add a simple script to generate a table of contents or "latest versions" index.
