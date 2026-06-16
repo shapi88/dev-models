@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {
+      "description": "Prevent direct modification of agent/skill definitions without plan approval",
+      "paths": [".grok/agents/", ".grok/skills/", ".grok/guardrails.md", ".grok/grok-instructions.md"],
+      "action": "require_approval"
+    }
+  ],
+  "notes": "Local preToolUse guards. Aligns with .github/preToolUse.json and guardrails."
+}

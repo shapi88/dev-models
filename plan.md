@@ -172,3 +172,123 @@ All items from the enhancement request have been executed:
 The repository is now in a much better state for "models" (templates + docs) per framework/language, with first-class support for agent-driven maintenance.
 
 Next logical work: populate more real code in the Java template skeleton, add more Python FastAPI depth (e.g. full async SQLAlchemy example, testing patterns), or add a third language (e.g. TypeScript/Nest).
+
+## Phase: Adapt .grok to Use the Same Rule Set Structure and Strategy as .github
+
+### Current State Analysis
+- `.github/` follows the mature gh600-exam pattern:
+  - `agents/*.agent.md`: Strict YAML frontmatter (`name`, `description`, `tools: [...]`), followed by rich, structured Markdown (`# Title`, detailed persona, `## Core Directives` with numbered rules, research requirements, output formats, `## Hard Stops`, `## Hand-off Protocol`).
+  - `skills/*.yml`: Consistent schema with `name`, `description`, `autonomy_level`, `trigger` (GitHub event-based), `input_schema` (typed objects with descriptions), `output_schema`.
+  - Supporting governance: `guardrails.md` (hard/soft rules), `copilot-instructions.md` (standing orders), `project-memory.md`, workflows that invoke skills.
+- `.grok/` (intended for local Grok TUI, CLI, and local agent execution) is currently lighter and inconsistent:
+  - `agents/executor.agent.md`: Has frontmatter but uses "LocalExecutor" naming, shorter/less structured body (no Core Directives section, no hand-off, minimal rules).
+  - `skills/generate-language-module.yml`: Flatter keys, no rich descriptions or typed schema like the .github counterpart.
+  - Missing full governance parity (`guardrails.md` is only in .github, no local equivalent instructions).
+- Result: Agents/skills developed for one environment may behave differently or be harder to maintain in the other. This breaks the "same rule set" goal for a repo that is itself about consistent templates across languages.
+
+### Goals of Adaptation
+- **Full structural parity**: .grok files must be drop-in compatible in format with .github so the same agent "personality" and skill definitions can be loaded locally or in CI with identical behavior and safety rules.
+- **Strategy alignment**: Local agents must follow the exact same "thinking process" (research first, structured output, hard stops on protected files like .github/.grok, consistency enforcement across java/python modules) as their CI counterparts.
+- **Local vs CI differentiation only where necessary**: GitHub-specific `trigger` fields can be optional or local-only (e.g., "manual" or "cli-invoked"). Local tools can map (write_to_file instead of GitHub write actions).
+- **Benefits for dev-models**:
+  - Reliable local generation of new modules (e.g., "add Rust + Axum template" using the exact same planning/review rules the PR reviewer agent would apply).
+  - Easier maintenance: Edit once, the rule set applies everywhere.
+  - Better support for the Grok Build TUI / local workflows mentioned in the system context.
+- **Non-goals**: Do not duplicate every workflow file into .grok; workflows are CI-specific. Focus on agents + skills + shared governance.
+
+### Detailed Adaptation Plan
+
+1. **Standardize Agent File Format in .grok/agents/**
+   - Update all existing .agent.md files (executor, and add planner/reviewer if missing) to use **exact same frontmatter** as .github:
+     ```yaml
+     ---
+     name: ExecutorAgent   # Consistent naming (not "LocalExecutor")
+     description: "..."
+     tools:
+       - write_to_file
+       - ...
+     ---
+     ```
+   - Rewrite the Markdown body to mirror structure:
+     - `# Executor Agent`
+     - Detailed role paragraph (adapt for local: "You execute file changes directly on the local filesystem using the Grok tools...").
+     - `## Core Directives` (numbered list):
+       - Read research from templates/java/... and templates/python/... before acting.
+       - Enforce module separation and mirroring (FastAPI docs must have the same sections as Spring Boot 4).
+       - Use structured output when generating plans or code.
+       - Hard stops on modifying .github/ and .grok/ without plan approval.
+     - `## Execution Protocol` (local version of Hand-off): After planning, directly apply changes or output a patch for review. Log all actions.
+   - Create any missing agents in .grok/ by direct adaptation/copy of .github versions (with local tool mappings).
+
+2. **Standardize Skill File Format in .grok/skills/**
+   - Update existing skills (generate-language-module.yml) and create new ones to use the **full .github schema**:
+     ```yaml
+     name: generate-language-module
+     description: >
+       Long multi-line description explaining purpose, mirroring requirement, and output expectations.
+     autonomy_level: 1
+     # trigger: omitted or made local-only (e.g. "cli" or "manual-invocation")
+     input_schema:
+       language:
+         type: string
+         description: "..."
+         required: true
+     output_schema:
+       plan: string
+       files_to_create: list
+     ```
+   - Add local-friendly skills if useful (e.g., "local-review-module-consistency", "sync-agent-definitions").
+   - Keep descriptions verbose and strategy-focused (same as .github).
+
+3. **Add Parallel Governance Files to .grok/**
+   - Create `.grok/guardrails.md` (copy/adapt the .github version; emphasize local file system safety and "run plans through local planner first").
+   - Create `.grok/grok-instructions.md` (local equivalent of copilot-instructions.md — standing orders for local Grok sessions).
+   - Enhance `.grok/memory/project-memory.md` (already exists) with explicit references to the rule set: "When acting, always follow the Core Directives defined in .grok/agents/*.agent.md and the guardrails in this file."
+   - Add `.grok/config/preToolUse.json` and `mcp-config.json` if the local Grok supports them (for tool guards and server config).
+   - Update `.grok/README.md` to explicitly state: "This directory uses the **exact same rule set structure and strategy** as .github/ for maximum consistency between local development and CI."
+
+4. **Strategy and Behavioral Alignment**
+   - **Core Strategy**: Agents must always (a) research existing modules first, (b) enforce mirroring between frameworks, (c) produce structured plans before execution, (d) respect hard stops on agent config files.
+   - Document in both guardrails files: "The same agent definitions and skill schemas are authoritative for both environments. .grok/ is the local runtime view; .github/ is the CI/runtime view."
+   - Add a note or small helper (e.g., in docs or a script) about keeping them in sync (e.g., "symlink or copy-on-change for shared persona logic").
+   - For local invocation: The TUI/CLI should be able to load `.grok/agents/*.agent.md` and `.grok/skills/*.yml` using the identical parser as the GitHub workflows.
+
+5. **Implementation Steps (Recommended Order)**
+   1. Update all .grok/agents/*.agent.md files to full frontmatter + Core Directives structure (use .github versions as templates).
+   2. Standardize .grok/skills/*.yml files to full schema + rich descriptions.
+   3. Create missing governance files in .grok/.
+   4. Update .grok/README.md with alignment statement and usage instructions for local Grok.
+   5. Add a short "Agent Development" section to plan.md and the root README explaining the dual .github / .grok setup.
+   6. Test locally: Invoke a .grok agent (via whatever local mechanism) on a task like "plan addition of a new module" and verify it follows the same rules the .github reviewer would.
+   7. (Optional) Add a CI check that verifies structural parity between the two directories (e.g., same agent names, similar schema).
+
+6. **Risks / Considerations**
+   - Local tools differ (file system vs GitHub API) — document the mapping in each agent's directives.
+   - Over-syncing: Keep GitHub-specific fields out of .grok skills.
+   - Maintenance burden: The plan above includes a note on sync strategy.
+
+This phase ensures that whether an agent is "thinking" locally in the Grok environment or running in a GitHub workflow, it applies the **identical rule set** (research → structured plan → safe execution → mirroring enforcement) to tasks like maintaining the multi-framework templates in this repo.
+
+## Next Actions After This Plan Section
+- (Executed) File updates for .grok/ completed to achieve parity with .github/.
+
+## Execution Status: .grok Adaptation Phase
+- Updated .grok/agents/executor.agent.md to full ExecutorAgent structure matching .github/ (with local tool focus).
+- Added .grok/agents/planner.agent.md and reviewer.agent.md (direct adaptation of .github/ versions, preserving Core Directives, Hard Stops, Hand-off Protocol).
+- Updated .grok/skills/generate-language-module.yml to full schema with rich description and typed input_schema (matching .github/).
+- Added .grok/skills/review-pr.yml and generate-docs.yml for completeness (local-adapted).
+- Created .grok/guardrails.md (adapted from .github/ for local FS emphasis).
+- Created .grok/grok-instructions.md (local version of copilot-instructions.md).
+- Enhanced .grok/memory/project-memory.md with explicit rule set references.
+- Updated .grok/README.md to document the "exact same rule set structure and strategy" alignment.
+- Added .grok/config/ with mcp-config.json and preToolUse.json (mirroring reference structure).
+- All changes ensure local Grok agents use identical frontmatter, directives, schemas, guardrails, and strategy (research → structured plans → enforce module mirroring → hard stops) as CI agents.
+
+The dual setup (local .grok/ + CI .github/) is now aligned for consistent agent behavior across the dev-models repo (templates for Spring Boot 4 / Python FastAPI, etc.).
+
+## Overall Project Status
+- Agent scaffolding (.github/ + .grok/) complete and parity achieved.
+- Templates/ structure established with Java and Python modules.
+- All prior phases executed (see status updates above).
+
+Ready for use/maintenance. Next suggested: expand content or add more skills/workflows.
