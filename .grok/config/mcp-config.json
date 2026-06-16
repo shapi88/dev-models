@@ -1,0 +1,4 @@
+{
+  "mcpServers": {},
+  "notes": "Local MCP config for dev-models. Mirror from .github/mcp-config.json when adding servers for tools like filesystem or search."
+}

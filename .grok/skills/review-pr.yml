@@ -1,0 +1,18 @@
+name: review-pr
+description: >
+  Reads a pull request diff and posts a structured review comment summarising
+  changed files, potential issues, and a recommended action (approve / request
+  changes / comment). Does not approve or merge on its own.
+autonomy_level: 2
+input_schema:
+  pr_number:
+    type: integer
+    required: true
+    description: Pull request number to review.
+  repository:
+    type: string
+    required: true
+    description: "Owner/repo in the form owner/repo."
+output_schema:
+  comment_body: string
+  recommended_action: string  # approve | request_changes | comment

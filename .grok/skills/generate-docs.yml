@@ -1,0 +1,15 @@
+name: generate-docs
+description: >
+  Generates or updates documentation for a language/framework module in dev-models (e.g. adding FastAPI persistence docs or best-practices).
+  Follows the structure from the Java Spring Boot 4 reference.
+autonomy_level: 1
+input_schema:
+  module:
+    type: string
+    description: "e.g. python/fastapi or java/spring-boot-4"
+  section:
+    type: string
+    description: "e.g. persistence or best-practices/memory"
+output_schema:
+  files_created: list
+  summary: string

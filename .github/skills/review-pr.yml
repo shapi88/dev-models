@@ -1,0 +1,20 @@
+name: review-pr
+description: >
+  Reads a pull request diff in dev-models and posts a structured review comment.
+  Summarises changed files (especially in templates/ or manual/), potential issues (consistency with Spring Boot module, missing sections for new language), and recommends action.
+autonomy_level: 2
+trigger:
+  event: pull_request
+  types: [opened, synchronize, reopened]
+input_schema:
+  pr_number:
+    type: integer
+    required: true
+    description: Pull request number to review.
+  repository:
+    type: string
+    required: true
+    description: "Owner/repo in the form owner/repo."
+output_schema:
+  comment_body: string
+  recommended_action: string  # approve | request_changes | comment
