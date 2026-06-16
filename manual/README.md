@@ -12,7 +12,10 @@ It is designed especially for junior developers to quickly get up to speed with 
 2. [Architectures](./architectures/)
    - [Monolith Model v1](./architectures/monolith/v1/overview.md)
    - [Microservices Model v1](./architectures/microservices/v1/overview.md)
-3. **Java 25 + Spring Boot 4** (Primary Platform)
+3. **Templates / Language Modules**
+   - Java 25 + Spring Boot 4 (see `templates/java/spring-boot-4/`)
+   - Python 3 + FastAPI (see `templates/python/fastapi/`)
+4. Cross-cutting content (architectures, onboarding) lives under this `manual/` for now.
    - [Overview](./java-25-spring-boot-4/README.md)
    - [Getting Started with Java 25 + Spring Boot 4](./java-25-spring-boot-4/getting-started.md)
    - [Migration from Spring Boot 3](./java-25-spring-boot-4/migration-from-spring-boot-3.md)

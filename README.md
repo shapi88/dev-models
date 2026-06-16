@@ -1,6 +1,8 @@
 # dev-models
 
-**Developer Manual** (Java 25 + Spring Boot 4 Focus)
+**Developer Manual + Multi-Language Templates**
+
+(Java 25 + Spring Boot 4 and Python 3 + FastAPI reference modules)
 
 A practical, versioned **Developer Manual** focused on **Java 25 + Spring Boot 4**, architectural models, best practices, and API design.
 

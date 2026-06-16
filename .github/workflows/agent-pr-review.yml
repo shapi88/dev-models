@@ -1,0 +1,17 @@
+name: Agent PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Reviewer Agent
+        run: |
+          echo "Would invoke reviewer agent on PR ${{ github.event.pull_request.number }}"
+          # In real setup this calls the skill or agent via Grok CLI / MCP
+      - name: Post review (placeholder)
+        run: echo "Structured review would be posted here"

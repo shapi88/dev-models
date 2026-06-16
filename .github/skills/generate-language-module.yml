@@ -1,0 +1,21 @@
+name: generate-language-module
+description: >
+  Generates the full documentation skeleton + basic template code for a new language/framework module (e.g. Python + FastAPI) following the established pattern from the Java Spring Boot 4 module.
+autonomy_level: 1
+trigger:
+  event: issue
+  types: [labeled]
+  label: "generate-module"
+input_schema:
+  language:
+    type: string
+    description: "e.g. python"
+  framework:
+    type: string
+    description: "e.g. fastapi"
+  version:
+    type: string
+    description: "e.g. 3.12 or latest"
+output_schema:
+  plan: string
+  files_to_create: list
