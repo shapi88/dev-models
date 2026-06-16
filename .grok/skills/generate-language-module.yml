@@ -1,0 +1,10 @@
+name: generate-language-module
+description: Local skill for generating a new framework/language module in dev-models following the established pattern.
+autonomy_level: 1
+input_schema:
+  language: string
+  framework: string
+  target_version: string
+output_schema:
+  created_files: list
+  next_steps: string

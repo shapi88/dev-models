@@ -7,11 +7,18 @@ on:
 jobs:
   review:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Run Reviewer Agent
+      - name: Run Reviewer Agent Skill
+        # In a real Grok-integrated setup, this would invoke the skill via CLI or MCP
         run: |
-          echo "Would invoke reviewer agent on PR ${{ github.event.pull_request.number }}"
-          # In real setup this calls the skill or agent via Grok CLI / MCP
-      - name: Post review (placeholder)
-        run: echo "Structured review would be posted here"
+          echo "Invoking review-pr skill for PR ${{ github.event.pull_request.number }}"
+          echo "Review would be posted based on .github/skills/review-pr.yml"
+      - name: Post placeholder review
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "Automated agent review placeholder. See .github/skills/review-pr.yml for the full skill definition."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

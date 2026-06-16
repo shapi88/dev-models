@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/templates/python/fastapi/template"
+    schedule:
+      interval: "weekly"
+  # Add for Java template when it has a pom/build file

@@ -1,8 +1,12 @@
 # dev-models
 
-**Developer Manual + Multi-Language Templates**
+**Developer Manual + Multi-Language / Multi-Framework Templates**
 
-(Java 25 + Spring Boot 4 and Python 3 + FastAPI reference modules)
+Reference modules:
+- Java 25 + Spring Boot 4 (templates/java/spring-boot-4/)
+- Python 3 + FastAPI (templates/python/fastapi/)
+
+Includes cross-cutting architectures, onboarding, and full agent scaffolding (.github/ + .grok/).
 
 A practical, versioned **Developer Manual** focused on **Java 25 + Spring Boot 4**, architectural models, best practices, and API design.
 
