@@ -272,23 +272,172 @@ This phase ensures that whether an agent is "thinking" locally in the Grok envir
 ## Next Actions After This Plan Section
 - (Executed) File updates for .grok/ completed to achieve parity with .github/.
 
-## Execution Status: .grok Adaptation Phase
-- Updated .grok/agents/executor.agent.md to full ExecutorAgent structure matching .github/ (with local tool focus).
-- Added .grok/agents/planner.agent.md and reviewer.agent.md (direct adaptation of .github/ versions, preserving Core Directives, Hard Stops, Hand-off Protocol).
-- Updated .grok/skills/generate-language-module.yml to full schema with rich description and typed input_schema (matching .github/).
-- Added .grok/skills/review-pr.yml and generate-docs.yml for completeness (local-adapted).
-- Created .grok/guardrails.md (adapted from .github/ for local FS emphasis).
-- Created .grok/grok-instructions.md (local version of copilot-instructions.md).
-- Enhanced .grok/memory/project-memory.md with explicit rule set references.
-- Updated .grok/README.md to document the "exact same rule set structure and strategy" alignment.
-- Added .grok/config/ with mcp-config.json and preToolUse.json (mirroring reference structure).
-- All changes ensure local Grok agents use identical frontmatter, directives, schemas, guardrails, and strategy (research → structured plans → enforce module mirroring → hard stops) as CI agents.
+## Execution Status: .grok Adaptation Phase (Previous)
+- (Completed in prior step) Structural parity between .grok and .github achieved.
 
-The dual setup (local .grok/ + CI .github/) is now aligned for consistent agent behavior across the dev-models repo (templates for Spring Boot 4 / Python FastAPI, etc.).
+## Execution Status: gh600-Standards + SOLID + Clean Architecture + Genericity Phase (Current)
+**Major updates performed:**
+- `.github/guardrails.md` fully rewritten to match gh600-exam structure (Autonomy Matrix Levels 0-4, detailed Hard Stops table, Required Audit Trail, Rollback Procedures, Policy Enforcement Mapping, Review Schedule) + added explicit "SOLID Principles and Clean Architecture Mandate" as a project-specific extension (non-negotiable for agents; violations are hard stops with waiver process).
+- `.github/copilot-instructions.md` fully rewritten to match gh600-exam (Default Posture: Read before write / Plan before code / Smallest diff; Autonomy Level table; MAY / MAY NOT lists; expanded Stop Conditions including SOLID/Clean Arch violation; Required Audit Trail; Sensitive-Path Reference; Rollback; World-Class Developer Mandate + SOLID/Clean Arch requirements; explicit note that the system is **generic for every project**).
+- `.grok/guardrails.md` updated to mirror the new gh600-style guardrails (local adaptations noted, same autonomy, hard stops, SOLID/Clean Arch mandate, generic language).
+- `.grok/grok-instructions.md` updated to mirror the new gh600-style copilot-instructions (local parity, added SOLID/Clean Arch and "generic for every project" language).
+- `.grok/README.md` updated with clear "Generic gh600-Style" positioning, parity rule, key enhancements, and "How to Use in This (or Any) Project" adoption instructions.
+- Created `.github/branch-protection.md` (full gh600-style documented settings with verification and restore commands).
+- Created `.github/INCIDENT_RESPONSE.md` (full gh600-style runbook with severity, contain/investigate/update/post-mortem/verify steps, adapted for the generic agent system).
+- Agent files (.github and .grok) already had strong Core Directives; the governance files now explicitly require agents to behave as "best developers in the world" enforcing SOLID + Clean Architecture in *every* plan/review/implementation.
+- The changes remove or generalize most dev-models-specific language in the core governance, making the agent system portable.
+
+All core files now align with gh600-exam best practices while elevating agent behavior with SOLID and Clean Architecture as first-class concerns, and positioning the entire setup as a generic, copyable asset for any project.
 
 ## Overall Project Status
-- Agent scaffolding (.github/ + .grok/) complete and parity achieved.
-- Templates/ structure established with Java and Python modules.
-- All prior phases executed (see status updates above).
+- Agent scaffolding now at full gh600 standards with world-class developer principles (SOLID + Clean Architecture) baked in at the governance and prompt level.
+- System is explicitly designed and documented as **generic for every project** (see README updates and plan).
+- Supporting gh600 artifacts (branch-protection.md, INCIDENT_RESPONSE.md) added.
+- Previous phases (templates/ separation, Python FastAPI module, prior .grok alignment) remain intact and benefit from the higher-quality agent governance.
 
-Ready for use/maintenance. Next suggested: expand content or add more skills/workflows.
+Ready for broader use and extraction. Next recommended steps: Create `templates/agent-system/` as a clean, standalone reusable package with adoption guide; add remaining gh600 skills (multi-agent-planner, run-eval, triage-issue) and workflows; add evaluation baselines; update CODEOWNERS and other supporting files if missing.
+
+## Phase: Adopt GitHub-600 (gh600-exam) Standards + SOLID + Clean Architecture for Generic, World-Class Agent Templates
+
+### Vision
+Transform the agent scaffolding in this repository (and extract it for reuse) so that:
+- `.github/` and `.grok/` follow the **exact standards, guidelines, and best practices** established in `gh600-exam` (the reference "github-600" project).
+- Every agent (Planner, Executor, Reviewer) behaves like one of the **best developers in the world**.
+- Agents **relentlessly apply SOLID principles** and **Clean Architecture rules** in every plan, review, and implementation.
+- The entire system is **generic and portable** — easily copyable to *any* project (not dev-models specific). dev-models will "eat its own dogfood" by using the generic templates for its own multi-language handbook and template work.
+
+This makes the agent system a first-class, reusable "AI developer team" kit.
+
+### Analysis of Current State vs. gh600-exam Best Practices
+**gh600-exam strengths (to adopt/adapt):**
+- **Guardrails.md**: Full Autonomy Matrix (Levels 0-4), explicit "Hard Stops" list (never touch workflows/, CODEOWNERS, copilot-instructions.md, etc.), required audit trails per action, rollback procedures, policy enforcement mapping, review schedule.
+- **copilot-instructions.md**: "Read before write", "Plan before code", "Smallest diff", clear MAY/MAY NOT lists, Stop Conditions (7+), required audit trail, sensitive-path reference, rollback instruction.
+- **project-memory.md**: Structured persistent context (repo identity, key files, conventions, autonomy constraints, evaluation baselines, approved MCP servers, state checkpoints, idempotency rule, ephemeral memory section that agents must auto-update).
+- **branch-protection.md**: Documented, auditable settings + verification/restore commands.
+- **INCIDENT_RESPONSE.md**: Full severity classification, step-by-step runbook (identify, contain, investigate, update controls, post-mortem, verify).
+- Agents: Structured with frontmatter + very directive-driven prompts emphasizing research, planning, human hand-off, and safety.
+- Skills: Declarative YAML with clear schemas, autonomy, triggers.
+- Supporting: CODEOWNERS, PULL_REQUEST_TEMPLATE, ISSUE_TEMPLATE/agent-incident.md, dependabot, mcp-config, preToolUse, guardrails-check workflow, etc.
+- Overall philosophy: Strong human-in-the-loop at Level 2, least privilege, auditability, "smallest safe change", explicit evaluation.
+
+**Current dev-models state (gaps):**
+- Has good partial alignment from previous phases (agents with Core Directives, guardrails, skills, copilot/grok-instructions, project-memory, some workflows).
+- Still somewhat dev-models-specific (hard-coded references to "templates/java/spring-boot-4", "python/fastapi", "junior developers handbook").
+- Lacks full gh600 artifacts: branch-protection.md, complete INCIDENT_RESPONSE.md, richer project-memory with evaluation baselines/MCP allowlist/idempotency/ephemeral sections, more skills (multi-agent-planner, run-eval, triage-issue), agent-eval workflow, etc.
+- Agents are helpful for this repo but not yet "best developer in the world" with explicit, relentless SOLID + Clean Architecture mandates.
+- .grok/ mirrors .github/ structurally but governance and prompts need deeper alignment to gh600.
+- Not yet packaged as generic/reusable templates.
+
+### Core Principles to Embed (Non-Negotiable for All Agents)
+**"Best World Developers" Persona (add to every agent prompt):**
+- You are a world-class software engineer who has mastered multiple paradigms.
+- You **never** compromise on quality, even for speed.
+- You default to **simplicity, clarity, and long-term maintainability**.
+
+**SOLID Principles (enforced in every action):**
+- **S**ingle Responsibility: Every class/module/function has one reason to change.
+- **O**pen/Closed: Open for extension, closed for modification (use abstraction, composition, interfaces).
+- **L**iskov Substitution: Subtypes must be substitutable for their base types without breaking behavior.
+- **I**nterface Segregation: Many specific interfaces > one general-purpose one.
+- **D**ependency Inversion: Depend on abstractions, not concretions. High-level modules do not depend on low-level modules.
+
+**Clean Architecture Rules (enforced in every plan/review/implementation):**
+- **Dependency Rule**: Source code dependencies must point only inward. Inner circles (Entities, Use Cases) know nothing about outer circles (Frameworks, UI, DB, External Services). Details (DB, UI, frameworks) depend on abstractions defined in inner circles.
+- Entities contain business rules and are independent of frameworks.
+- Use Cases orchestrate the flow of data to and from entities; they are the "application" layer.
+- Interface Adapters convert data between use cases and external world (controllers, presenters, gateways).
+- Frameworks & Drivers are the outermost layer (DBs, web frameworks, devices).
+- When generating or reviewing code/docs:
+  - Always draw or describe the dependency direction.
+  - Push framework-specific details (Spring annotations, FastAPI routers, SQLAlchemy models) to the outermost layer.
+  - Prefer ports/adapters, dependency injection, and interfaces.
+  - Never let infrastructure (persistence, web, external APIs) leak into domain logic.
+- For documentation/handbook: Explain concepts using Clean Architecture layers. When providing templates, show clear separation (e.g., domain/ vs adapters/ vs infrastructure/).
+
+Agents must **call out violations** of SOLID or Clean Architecture in reviews and refuse to implement plans that would introduce them (or propose refactors to fix).
+
+### Adaptation Strategy
+1. **Adopt gh600 Structure & Governance Verbatim (adapted for genericity)**:
+   - Copy/adapt `guardrails.md`, `copilot-instructions.md`, `project-memory.md`, `branch-protection.md`, `INCIDENT_RESPONSE.md` into `.github/`.
+   - Create parallel versions in `.grok/` (local equivalents: `grok-guardrails.md`, `grok-instructions.md`, enhanced memory with same sections).
+   - Add missing supporting files: CODEOWNERS (if not present), more ISSUE_TEMPLATEs (agent-incident), PULL_REQUEST_TEMPLATE enhancements, `templates/artifact-schema.json` or similar for plans/handoffs.
+   - Add/enhance workflows: agent-multi-agent-planner, agent-eval, agent-issue-triage, full guardrails-check with scope-control + secret-scan.
+   - mcp-config.json + preToolUse.json with explicit allow/deny lists.
+   - Autonomy Level 2 as default everywhere, with clear escalation for Level 3/4.
+
+2. **Make Everything Generic (Reusable Across Projects)**:
+   - Extract core agent definitions, skills, instructions, guardrails, and memory into a **portable "agent-system" template** (e.g., under `templates/agent-system/` or as a standalone copy-paste package in the repo).
+   - Use placeholders/variables in prompts and docs: `{{REPO_NAME}}`, `{{PRIMARY_LANGUAGES}}`, `{{FRAMEWORKS}}`, `{{ARCHITECTURE_STYLE}}`, `{{TEAM_CONVENTIONS}}`.
+   - Remove or conditionalize dev-models-specific references (e.g., "Spring Boot 4 / FastAPI" become examples; core logic is "for whatever languages and frameworks this project uses").
+   - Make skills like `review-pr`, `generate-docs`, `multi-agent-planner` project-agnostic. dev-models-specific skills (e.g., "generate-language-module") live in a project-specific overlay.
+   - Provide clear "How to Adopt in Your Project" instructions in READMEs and plan.md (copy `.github/`, `.grok/`, customize the few project-specific sections in project-memory.md and instructions).
+   - Both `.github/` and `.grok/` consume the same base templates so local and CI stay in sync.
+
+3. **Infuse "Best World Developer" Behavior + SOLID + Clean Architecture**:
+   - **Update all agent prompts** (in both .github/agents/ and .grok/agents/):
+     - Add a permanent "World-Class Developer Mandate" section at the top of every persona.
+     - In **PlannerAgent**: 
+       - Research must include existing architecture boundaries.
+       - Every plan **must** explicitly map proposed changes to SOLID principles and Clean Architecture layers (e.g., "This change keeps Use Cases independent of Spring Data / SQLAlchemy").
+       - Output format addition: "SOLID/Clean Arch Compliance" checklist.
+     - In **ReviewerAgent**:
+       - Mandatory section in every review: "SOLID & Clean Architecture Assessment" (score each principle + specific violations + required fixes).
+       - Reject or request changes for any violation.
+     - In **ExecutorAgent**:
+       - Only implement after confirming plan has proper layer separation and SOLID compliance.
+       - When writing code, prefer abstractions, interfaces, dependency injection; push framework details outward.
+       - For docs/handbook: Ensure explanations and templates demonstrate Clean Architecture.
+   - Add to `guardrails.md` and `copilot/grok-instructions.md`:
+     - "SOLID and Clean Architecture are non-negotiable. Any plan or change that violates them is a hard stop unless explicitly waived by human + documented rationale."
+   - Add a dedicated skill: `architecture-review.yml` (enforces SOLID + Clean Arch on diffs).
+   - Update project-memory.md (both .github and .grok versions) with:
+     - Section on "Architectural Principles": List SOLID + Clean Architecture as team invariants.
+     - Evaluation baselines that include architecture quality.
+
+4. **Ensure Parity and Sync Between .github/ and .grok/**:
+   - .grok/ must be a first-class local mirror (same file names where possible, same content structure, same rule enforcement).
+   - Add a `sync-agents.sh` or note in plan.md for keeping them aligned.
+   - Both must load the same "core agent personality" (SOLID/Clean Arch + gh600 guardrails) while allowing local vs remote tool differences (documented in each agent's "Execution Environment" section).
+
+5. **Enhance for Multi-Project Genericity + Dev-Models Dogfooding**:
+   - Create `templates/agent-system/` containing the canonical, parameterized versions of agents/, skills/, guardrails.md, *-instructions.md, project-memory.md template, etc.
+   - dev-models uses these templates (with its own overrides for Java/Python handbook work).
+   - Document "Adoption Guide for Any Project" (copy the templates/, customize 4-5 files: project-memory, instructions, guardrails paths, add your languages/frameworks).
+   - Use the agents *inside* dev-models development (e.g., the Planner must produce plans that follow Clean Architecture for any new handbook section or template).
+
+6. **Supporting Best Practices from gh600**:
+   - Add `.github/branch-protection.md` (auditable settings + verification commands).
+   - Add full `.github/INCIDENT_RESPONSE.md` (severity, contain/investigate/update/post-mortem).
+   - Expand CODEOWNERS, PULL_REQUEST_TEMPLATE, ISSUE_TEMPLATE/agent-incident.md.
+   - Add more skills (multi-agent-planner, run-eval, triage-issue) and workflows.
+   - Add evaluation baselines in `evals/` (if not present) for agent quality, including architecture compliance.
+   - Update dependabot, SECURITY.md, etc., to gh600 style where superior.
+
+7. **Verification & Rollout**:
+   - Enhance `guardrails-check.yml` to also validate SOLID/Clean Arch mentions in plans and agent prompts.
+   - Add a one-time "architecture compliance" eval using the new skill.
+   - Update plan.md and root README with adoption status.
+   - After changes, run the agents on a small task (e.g., "plan a small improvement to the Python FastAPI template") and verify they apply the principles.
+   - Create a migration PR checklist that includes "Agent prompts updated for SOLID/Clean Arch + gh600 parity".
+
+### Risks & Mitigations
+- **Over-generalization**: Some dev-models specifics (e.g., exact module paths) may still need project overlays — mitigate with clear "base + override" pattern in the templates.
+- **Prompt bloat**: Keep the "best developer + SOLID/Clean Arch" section concise but mandatory.
+- **Maintenance of two systems (.github + .grok)**: Treat the agent-system templates as the single source of truth.
+- **Adoption friction for other projects**: Provide copy-paste instructions + a "minimal generic starter" in templates/agent-system/minimal/.
+
+### Implementation Order (Prioritized)
+1. Update `.github/guardrails.md`, `copilot-instructions.md`, add `branch-protection.md` and `INCIDENT_RESPONSE.md` to match gh600 (infuse SOLID/Clean Arch mandates).
+2. Update `.github/agents/*.agent.md` with "best world developer + SOLID + Clean Architecture" sections (use gh600 agent style + new principles).
+3. Do the exact parallel updates for `.grok/` (guardrails, grok-instructions, agents, memory, add config files).
+4. Generalize skills (add architecture-review skill; make existing skills use placeholders).
+5. Create `templates/agent-system/` with the canonical generic versions (README with adoption guide).
+6. Expand workflows, add missing skills from gh600, update project-memory.md in both locations with evaluation baselines and architectural principles.
+7. Update plan.md (this section), root README, and any handbook docs that reference the agent system.
+8. Add CODEOWNERS/branch protection docs if missing; enhance guardrails-check.
+9. Test: Have Planner/Reviewer/Executor run on a task involving both Java and Python modules and a new generic improvement; verify they cite SOLID/Clean Arch.
+10. Document how other projects (outside dev-models) can adopt the system.
+
+This phase elevates the agent system from "helpful for this handbook repo" to "a portable, professional-grade AI developer team that any project can use, with world-class engineering principles baked in at the prompt and governance level."
+
+See also the earlier "Phase: Adapt .grok..." section — this new phase builds directly on that structural parity work.
